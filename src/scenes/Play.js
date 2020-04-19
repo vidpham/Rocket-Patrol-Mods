@@ -9,7 +9,7 @@ class Play extends Phaser.Scene{
         // load images/tile sprites
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
-        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('new_bg', './assets/new_bg.png');
 
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -25,7 +25,7 @@ class Play extends Phaser.Scene{
         })
          
         // place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.new_bg = this.add.tileSprite(0, 0, 640, 480, 'new_bg').setOrigin(0, 0);
 
          // white rectangle borders
          this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
@@ -36,7 +36,7 @@ class Play extends Phaser.Scene{
          this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);
 
          // add rocket (p1)
-         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 431, 'rocket').setScale(0.5, 0.5).setOrigin(0, 0);
+         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 400, 'rocket').setOrigin(0, 0);
          
          // add spaceships (x3)
          this.ship01 = new Spaceship(this, game.config.width + 192, 132, 'spaceship', 0, 30).setOrigin(0,0);
@@ -112,7 +112,7 @@ if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)) {
             this.scene.start("menuScene");
         }
 
-        this.starfield.tilePositionX -= 4; // scroll tile sprite
+        this.new_bg.tilePositionX -= 4; // scroll tile sprite
         
         if (!this.gameOver) {               
             this.p1Rocket.update();         // update rocket sprite
