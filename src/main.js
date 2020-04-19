@@ -6,11 +6,15 @@ let config = {
 }
 
 let game = new Phaser.Game(config);
+//var highScore;
+//var storedScore;
+var savedScore;
 
 // define game settings
 game.settings = {
    spaceshipSpeed: 3,
-   gameTimer: 60000    
+   gameTimer: 10000,    
+   highScore: 0
 }
 
 // reserve keyboard vars
