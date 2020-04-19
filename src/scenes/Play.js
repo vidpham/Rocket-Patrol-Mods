@@ -10,6 +10,7 @@ class Play extends Phaser.Scene{
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('new_bg', './assets/new_bg.png');
+        this.load.image('top_bar', './assets/topbar.png');
 
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -28,15 +29,16 @@ class Play extends Phaser.Scene{
         this.new_bg = this.add.tileSprite(0, 0, 640, 480, 'new_bg').setOrigin(0, 0);
 
          // white rectangle borders
-         this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
+        /* this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
          this.add.rectangle(5, 443, 630, 32, 0xFFFFFF).setOrigin(0, 0);
          this.add.rectangle(5, 5, 32, 455, 0xFFFFFF).setOrigin(0, 0);
          this.add.rectangle(603, 5, 32, 455, 0xFFFFFF).setOrigin(0, 0);
          // green UI background
-         this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);
+        // this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);*/
+         var topbar = this.add.image(566, 64, 'top_bar');
 
          // add rocket (p1)
-         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 400, 'rocket').setOrigin(0, 0);
+         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 300, 'rocket').setOrigin(0, 0);
          
          // add spaceships (x3)
          this.ship01 = new Spaceship(this, game.config.width + 192, 132, 'spaceship', 0, 30).setOrigin(0,0);
