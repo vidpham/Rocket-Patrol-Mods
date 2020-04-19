@@ -11,6 +11,11 @@ class Play extends Phaser.Scene{
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('new_bg', './assets/new_bg.png');
         this.load.image('top_bar', './assets/topbar.png');
+        this.load.image('top_bar_2', './assets/topbar2.png');
+        this.load.image('borders', './assets/borders.png');
+        this.load.image('stars_1', './assets/stars_1.png');
+        this.load.image('clouds_2', './assets/clouds_2.png');
+        this.load.image('clouds', './assets/clouds.png');
 
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -25,17 +30,17 @@ class Play extends Phaser.Scene{
             loop: true
         })
          
-        // place tile sprite
+        // place tile sprites
         this.new_bg = this.add.tileSprite(0, 0, 640, 480, 'new_bg').setOrigin(0, 0);
+        this.stars_1 = this.add.tileSprite(0, 0, 640, 480, 'stars_1').setOrigin(0, 0);
+        this.clouds_2 = this.add.tileSprite(0, 0, 640, 480, 'clouds_2').setOrigin(0, 0);
+        this.clouds = this.add.tileSprite(0, 0, 640, 480, 'clouds').setOrigin(0, 0);
 
-         // white rectangle borders
-        /* this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
-         this.add.rectangle(5, 443, 630, 32, 0xFFFFFF).setOrigin(0, 0);
-         this.add.rectangle(5, 5, 32, 455, 0xFFFFFF).setOrigin(0, 0);
-         this.add.rectangle(603, 5, 32, 455, 0xFFFFFF).setOrigin(0, 0);
-         // green UI background
-        // this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);*/
-         var topbar = this.add.image(566, 64, 'top_bar');
+         // borders
+         var border = this.add.image(320, 240, 'borders');
+         var topbar = this.add.image(297, 64, 'top_bar');
+         var topbar = this.add.image(699, 64, 'top_bar_2');
+
 
          // add rocket (p1)
          this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 300, 'rocket').setOrigin(0, 0);
@@ -114,7 +119,11 @@ if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)) {
             this.scene.start("menuScene");
         }
 
-        this.new_bg.tilePositionX -= 4; // scroll tile sprite
+        // parallax scrolling
+        this.new_bg.tilePositionX -= .7; 
+        this.stars_1.tilePositionX -= 1; 
+        this.clouds_2.tilePositionX -= 2.5; 
+        this.clouds.tilePositionX -= 4; 
         
         if (!this.gameOver) {               
             this.p1Rocket.update();         // update rocket sprite
