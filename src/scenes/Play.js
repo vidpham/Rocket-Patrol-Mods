@@ -12,10 +12,12 @@ class Play extends Phaser.Scene{
         this.load.image('new_bg', './assets/new_bg.png');
         this.load.image('top_bar', './assets/topbar.png');
         this.load.image('top_bar_2', './assets/topbar2.png');
+       // this.load.image('borders', './assets/borders.png');
         this.load.image('borders', './assets/borders.png');
         this.load.image('stars_1', './assets/stars_1.png');
         this.load.image('clouds_2', './assets/clouds_2.png');
         this.load.image('clouds', './assets/clouds.png');
+        this.load.image('game_over', './assets/gameover.png');
 
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -36,14 +38,14 @@ class Play extends Phaser.Scene{
         this.clouds_2 = this.add.tileSprite(0, 0, 640, 480, 'clouds_2').setOrigin(0, 0);
         this.clouds = this.add.tileSprite(0, 0, 640, 480, 'clouds').setOrigin(0, 0);
 
-         // borders
-         var border = this.add.image(320, 240, 'borders');
-         var topbar = this.add.image(297, 64, 'top_bar');
-         var topbar = this.add.image(699, 64, 'top_bar_2');
-
-
          // add rocket (p1)
-         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 300, 'rocket').setOrigin(0, 0);
+         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 455, 'rocket').setOrigin(0, 0);
+
+           // borders
+       //  var border = this.add.image(320, 240, 'borders');
+       var border = this.add.image(320, 240, 'borders');
+       var topbar = this.add.image(297, 64, 'top_bar');
+       var topbar = this.add.image(699, 64, 'top_bar_2');
          
          // add spaceships (x3)
          this.ship01 = new Spaceship(this, game.config.width + 192, 132, 'spaceship', 0, 30).setOrigin(0,0);
@@ -66,34 +68,32 @@ class Play extends Phaser.Scene{
         this.p1Score = 0;
       
         let scoreConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
+            fontFamily: 'Arial Black',
+            fontSize: '40px',
+            color: '#684AA7',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(69, 54, this.p1Score, scoreConfig);
+        this.scoreLeft = this.add.text(70, 46, this.p1Score, scoreConfig);
 
 
         // high score
         let highScoreConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
-            align: 'right',
+            fontFamily: 'Arial Black',
+            fontSize: '40px',
+            color: '#684AA7',
+            align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
             fixedWidth: 100
         }
-        this.scoreRight = this.add.text(473, 54, game.settings.highScore, scoreConfig); 
+        this.scoreRight = this.add.text(474, 46, game.settings.highScore, scoreConfig); 
 
         // game over flag
         this.gameOver = false;
@@ -102,8 +102,7 @@ class Play extends Phaser.Scene{
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             bg_track.stop();
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, '(F)ire to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+            this.add.image(320, 240, 'game_over');
             this.gameOver = true;
         }, null, this);
     
@@ -120,7 +119,7 @@ if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)) {
         }
 
         // parallax scrolling
-        this.new_bg.tilePositionX -= .7; 
+        //this.new_bg.tilePositionX -= .7; 
         this.stars_1.tilePositionX -= 1; 
         this.clouds_2.tilePositionX -= 2.5; 
         this.clouds.tilePositionX -= 4; 
