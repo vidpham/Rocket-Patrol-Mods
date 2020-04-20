@@ -38,7 +38,7 @@ class Play extends Phaser.Scene{
         this.clouds = this.add.tileSprite(0, 0, 640, 480, 'clouds').setOrigin(0, 0);
 
          // add rocket (p1)
-         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 455, 'rocket').setOrigin(0, 0);
+         this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 430, 'rocket').setOrigin(0, 0);
 
          // borders
          var border = this.add.image(320, 240, 'borders');
@@ -117,8 +117,8 @@ if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)) {
         }
 
         // parallax scrolling
-        //this.new_bg.tilePositionX -= .7; 
-        this.stars_1.tilePositionX -= 1; 
+        this.new_bg.tilePositionX -= .7; 
+        this.stars_1.tilePositionX -= .7; 
         this.clouds_2.tilePositionX -= 2.5; 
         this.clouds.tilePositionX -= 4; 
         
