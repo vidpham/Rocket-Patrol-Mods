@@ -12,7 +12,6 @@ class Play extends Phaser.Scene{
         this.load.image('new_bg', './assets/new_bg.png');
         this.load.image('top_bar', './assets/topbar.png');
         this.load.image('top_bar_2', './assets/topbar2.png');
-       // this.load.image('borders', './assets/borders.png');
         this.load.image('borders', './assets/borders.png');
         this.load.image('stars_1', './assets/stars_1.png');
         this.load.image('clouds_2', './assets/clouds_2.png');
@@ -41,11 +40,10 @@ class Play extends Phaser.Scene{
          // add rocket (p1)
          this.p1Rocket = new Rocket(this, game.config.width/2 - 8, 455, 'rocket').setOrigin(0, 0);
 
-           // borders
-       //  var border = this.add.image(320, 240, 'borders');
-       var border = this.add.image(320, 240, 'borders');
-       var topbar = this.add.image(297, 64, 'top_bar');
-       var topbar = this.add.image(699, 64, 'top_bar_2');
+         // borders
+         var border = this.add.image(320, 240, 'borders');
+         var topbar = this.add.image(297, 64, 'top_bar');
+         var topbar = this.add.image(699, 64, 'top_bar_2');
          
          // add spaceships (x3)
          this.ship01 = new Spaceship(this, game.config.width + 192, 132, 'spaceship', 0, 30).setOrigin(0,0);
